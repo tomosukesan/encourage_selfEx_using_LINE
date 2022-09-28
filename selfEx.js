@@ -6,15 +6,15 @@ const axios = require('axios');
 const translate = require("deepl");
 // Steinを利用
 const SteinStore = require('stein-js-client');
-const store = new SteinStore('https://api.steinhq.com/v1/storages/61b53bf5c582292380bc8fac');
+const store = new SteinStore('');
 
 const express = require('express');
 const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 3000;
 
 const config = {
-    channelSecret: '6a17a426190117cd302337d8295fc7ac',
-    channelAccessToken: 'nV+Ii7wLL/AdhzL78R2MiRjSam+PqOh9lEiQalOVjdoxPVwS16uTcVbhdEkjZxFpRmu47rvz7aGKfVrrgC1qCP2pkrXgT6gj2+FvNZlBarHIhN6pkOUfOwaoJoUp8O92ZX8XXtub27q8zQpyvPxQJwdB04t89/1O/w1cDnyilFU='
+    channelSecret: '',
+    channelAccessToken: ''
 };
 
 const app = express();
@@ -48,7 +48,7 @@ async function handleEvent(event) {
             free_api: true,
             text: text_en,
             target_lang: 'JA',
-            auth_key: 'bb5ce44c-b13a-d6cb-b687-962aa89dd923:fx',
+            auth_key: '',
         })
             .then(result => {
                 text_ja = result.data.translations[0].text;
@@ -108,33 +108,6 @@ async function handleEvent(event) {
             }
             else if(count == 2){
                 //嗜好に合わせたAPIを出力_画像
-                //現状はconsoleに出力しているだけ
-                /*
-        とりあえずボツかなああ
-                async function getRequest(url){
-                    //とりあえず柴犬以外
-                    let response;
-                    let img = "";
-                    try {
-                        response = await axios.get(url);
-                        // console.log(url); //このurlはここまで届いている
-                        img = response.data.image;
-                        // console.log("\"" + img + "\"");
-
-                        本当はトーク画面に出力したい！！！！！！！！！
-                        message = {
-                            "type": "image",
-                            "originalContentUrl": "\"" + img + "\"",
-                            "previewImageUrl": "\"" + img + "\""
-                        }
-
-                        message = { type: 'text', text: 'お疲れ様でした。\n好きなことで癒されてください。\n'+ img +'\n今後も頑張りましょう！'};
-                        client.replyMessage(event.replyToken, message);
-                    } catch (error) {
-                        console.error(error);
-                    }
-                }
-                */
                 if(favorite === '柴犬'){
                     async function getRequest() {
                         let response, result;
